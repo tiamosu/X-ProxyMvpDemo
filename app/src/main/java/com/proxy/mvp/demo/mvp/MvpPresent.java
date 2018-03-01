@@ -18,7 +18,7 @@ public class MvpPresent<V extends IView> implements IPresent<V> {
     @Override
     public void attachV(V view) {
         mWeakView = new WeakReference<>(view);
-        MvpViewInvocationHandler invocationHandler = new MvpViewInvocationHandler(mWeakView.get());
+        final MvpViewInvocationHandler invocationHandler = new MvpViewInvocationHandler(mWeakView.get());
         mProxyView = (V) Proxy.newProxyInstance(
                 view.getClass().getClassLoader(), view.getClass()
                         .getInterfaces(), invocationHandler);
