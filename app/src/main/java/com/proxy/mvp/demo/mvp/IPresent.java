@@ -7,7 +7,6 @@ package com.proxy.mvp.demo.mvp;
 
 @SuppressWarnings("WeakerAccess")
 public interface IPresent<V extends IView> {
-    void attachV(V view);
 
-    void detachV();
+    void attachV(V view);
 }

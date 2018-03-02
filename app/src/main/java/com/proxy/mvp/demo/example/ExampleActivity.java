@@ -2,7 +2,9 @@ package com.proxy.mvp.demo.example;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 
 import com.proxy.mvp.demo.R;
 import com.proxy.mvp.demo.mvp.BaseMvpActivity;
@@ -36,16 +38,17 @@ public class ExampleActivity extends BaseMvpActivity<ExamplePresent> implements 
 
     @Override
     public void loadData() {
-        getP().load();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getP().load();
+            }
+        }, 5000);
     }
 
     @Override
     public void showUserId(final String userId) {
-        mUserIdTv.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mUserIdTv.setText(userId);
-            }
-        }, 10000);
+        Log.e("weixi", "userId:" + userId);
+        mUserIdTv.setText(userId);
     }
 }

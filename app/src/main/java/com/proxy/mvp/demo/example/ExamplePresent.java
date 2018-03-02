@@ -1,5 +1,7 @@
 package com.proxy.mvp.demo.example;
 
+import android.util.Log;
+
 import com.proxy.mvp.demo.mvp.MvpPresent;
 
 /**
@@ -11,6 +13,7 @@ import com.proxy.mvp.demo.mvp.MvpPresent;
 public class ExamplePresent extends MvpPresent<IExampleView> {
 
     public void load() {
+        Log.e("weixi", "load");
         final String userId = "10086";
         getV().showUserId(userId);
     }
