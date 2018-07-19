@@ -1,1 +1,1 @@
-include ':app'
+include ':sample', ':mvp-common', ':mvp-nullobject-presenter'

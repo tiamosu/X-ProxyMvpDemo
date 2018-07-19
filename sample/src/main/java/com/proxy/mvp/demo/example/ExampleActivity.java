@@ -33,7 +33,7 @@ public class ExampleActivity extends BaseMvpActivity<ExamplePresent> implements 
 
     @Override
     public void initView() {
-        mUserIdTv = (AppCompatTextView) findViewById(R.id.example_user_id_tv);
+        mUserIdTv = findViewById(R.id.example_user_id_tv);
     }
 
     @Override
