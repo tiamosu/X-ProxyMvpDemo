@@ -11,7 +11,6 @@ import com.proxy.mvp.demo.mvp.proxy.MvpProxyHelper;
  * @author xia
  * @date 2018/3/1.
  */
-
 public abstract class BaseMvpActivity<P extends IPresent> extends AppCompatActivity implements IView<P> {
     private P mPresent;
     private AbsCacheProxy mMvpCacheProxy;

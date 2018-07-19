@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.proxy.mvp.demo.example.ExampleActivity;
 import com.proxy.mvp.demo.mvp.BaseMvpActivity;
+import com.proxy.mvp.demo.test.TestActivity;
 
 public class MainActivity extends BaseMvpActivity {
 
@@ -30,7 +31,8 @@ public class MainActivity extends BaseMvpActivity {
         findViewById(R.id.main_jump_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExampleActivity.jump(getContext());
+//                ExampleActivity.jump(getContext());
+                TestActivity.jump(getContext());
             }
         });
     }

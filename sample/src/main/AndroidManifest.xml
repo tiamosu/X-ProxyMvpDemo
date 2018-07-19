@@ -21,5 +21,6 @@
         </activity>
 
         <activity android:name=".example.ExampleActivity"/>
+        <activity android:name=".test.TestActivity"/>
     </application>
 </manifest>

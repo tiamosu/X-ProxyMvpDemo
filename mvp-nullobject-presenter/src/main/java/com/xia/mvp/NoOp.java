@@ -15,7 +15,8 @@ public final class NoOp {
 
     @SuppressWarnings("unchecked")
     public static <T> T of(Class<T> interfaceClass) {
-        return (T) newProxyInstance(interfaceClass.getClassLoader(), new Class[]{interfaceClass},
+        return (T) newProxyInstance(interfaceClass.getClassLoader(),
+                new Class[]{interfaceClass},
                 DEFAULT_VALUE);
     }
 

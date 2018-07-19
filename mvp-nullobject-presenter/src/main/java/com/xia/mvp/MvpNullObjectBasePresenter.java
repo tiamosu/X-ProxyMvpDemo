@@ -19,23 +19,19 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
     @SuppressWarnings("unchecked")
     public MvpNullObjectBasePresenter() {
         try {
-
             // Scan the inheritance hierarchy until we reached MvpNullObjectBasePresenter
             Class<V> viewClass = null;
             Class<?> currentClass = getClass();
 
             while (viewClass == null) {
-
                 Type genericSuperType = currentClass.getGenericSuperclass();
-
                 while (!(genericSuperType instanceof ParameterizedType)) {
                     // Scan inheritance tree until we find ParameterizedType which is probably a MvpSubclass
                     currentClass = currentClass.getSuperclass();
                     genericSuperType = currentClass.getGenericSuperclass();
                 }
 
-                Type[] types = ((ParameterizedType) genericSuperType).getActualTypeArguments();
-
+                final Type[] types = ((ParameterizedType) genericSuperType).getActualTypeArguments();
                 for (Type type : types) {
                     Class<?> genericType = (Class<?>) type;
                     if (genericType.isInterface() && isSubTypeOfMvpView(genericType)) {
@@ -43,11 +39,9 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
                         break;
                     }
                 }
-
                 // Continue with next class in inheritance hierarchy (see genericSuperType assignment at start of while loop)
                 currentClass = currentClass.getSuperclass();
             }
-
             nullView = NoOp.of(viewClass);
         } catch (Throwable t) {
             throw new IllegalArgumentException(
@@ -61,14 +55,14 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
     /**
      * Scans the interface inheritance hierarchy and checks if on the root is MvpView.class
      *
-     * @param klass The leaf interface where to begin to scan
+     * @param cls The leaf interface where to begin to scan
      * @return true if subtype of MvpView, otherwise false
      */
-    private boolean isSubTypeOfMvpView(Class<?> klass) {
-        if (klass.equals(MvpView.class)) {
+    private boolean isSubTypeOfMvpView(Class<?> cls) {
+        if (cls.equals(MvpView.class)) {
             return true;
         }
-        Class[] superInterfaces = klass.getInterfaces();
+        final Class[] superInterfaces = cls.getInterfaces();
         for (Class superInterface : superInterfaces) {
             if (isSubTypeOfMvpView(superInterface)) {
                 return true;
@@ -99,9 +93,6 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
         return nullView;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     @UiThread
     public void detachView() {
@@ -111,9 +102,6 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     @UiThread
     public void destroy() {
