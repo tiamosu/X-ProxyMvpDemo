@@ -6,7 +6,6 @@ import com.proxy.mvp.demo.mvp.IView;
  * @author xia
  * @date 2018/3/2.
  */
-
 public final class MvpProxyHelper {
 
     public static AbsCacheProxy create() {
