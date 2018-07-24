@@ -1,4 +1,4 @@
-package com.proxy.mvp.demo.test;
+package com.proxy.mvp.demo.mvp;
 
 /**
  * @author xia

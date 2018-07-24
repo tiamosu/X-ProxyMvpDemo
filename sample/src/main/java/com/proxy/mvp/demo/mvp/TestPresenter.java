@@ -1,4 +1,4 @@
-package com.proxy.mvp.demo.test;
+package com.proxy.mvp.demo.mvp;
 
 import android.util.Log;
 
@@ -10,10 +10,12 @@ public class TestPresenter extends BasePresenter<TestView> {
 
     public void load() {
         Log.e("weixi", "load");
-        final String userId = "10086";
-        getView().showUserId(userId);
 
-        final boolean isChecked = getView().isChecked();
+        final String userId = "10086";
+        getV().showUserId(userId);
+        Log.e("weixi", "getView:" + getV());
+
+        final boolean isChecked = getV().isChecked();
         Log.e("weixi", "boolean:" + isChecked);
     }
 }

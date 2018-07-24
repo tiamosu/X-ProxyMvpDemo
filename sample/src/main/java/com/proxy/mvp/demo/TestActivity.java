@@ -1,4 +1,4 @@
-package com.proxy.mvp.demo.test;
+package com.proxy.mvp.demo;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 
-import com.proxy.mvp.demo.R;
+import com.proxy.mvp.demo.mvp.BaseMvpActivity;
+import com.proxy.mvp.demo.mvp.TestPresenter;
+import com.proxy.mvp.demo.mvp.TestView;
 
 /**
  * @author xia

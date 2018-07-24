@@ -1,4 +1,4 @@
-package com.proxy.mvp.demo.test;
+package com.proxy.mvp.demo.mvp;
 
 import com.xia.mvp.MvpNullObjectBasePresenter;
 import com.xia.mvp.MvpPresenter;

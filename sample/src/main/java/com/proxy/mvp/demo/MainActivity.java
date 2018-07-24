@@ -1,11 +1,14 @@
 package com.proxy.mvp.demo;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.proxy.mvp.demo.example.ExampleActivity;
 import com.proxy.mvp.demo.mvp.BaseMvpActivity;
-import com.proxy.mvp.demo.test.TestActivity;
 
+/**
+ * @author xia
+ */
 public class MainActivity extends BaseMvpActivity {
 
     @Override
@@ -14,25 +17,14 @@ public class MainActivity extends BaseMvpActivity {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.activity_main;
-    }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    @Override
-    public void initView() {
-    }
-
-    @Override
-    public void loadData() {
-    }
-
-    @Override
-    public void initEvent() {
         findViewById(R.id.main_jump_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ExampleActivity.jump(getContext());
-                TestActivity.jump(getContext());
+                TestActivity.jump(MainActivity.this);
             }
         });
     }

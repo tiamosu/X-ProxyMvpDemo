@@ -12,9 +12,8 @@ import java.lang.reflect.Type;
  * @date 2018/7/19.
  */
 public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements MvpPresenter<V> {
-    private WeakReference<V> view;
-    private final V nullView;
-    private boolean viewAttachedAtLeastOnce = false;
+    private WeakReference<V> mView;
+    private final V mNullView;
 
     @SuppressWarnings("unchecked")
     public MvpNullObjectBasePresenter() {
@@ -42,7 +41,7 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
                 // Continue with next class in inheritance hierarchy (see genericSuperType assignment at start of while loop)
                 currentClass = currentClass.getSuperclass();
             }
-            nullView = NoOp.of(viewClass);
+            mNullView = NoOp.of(viewClass);
         } catch (Throwable t) {
             throw new IllegalArgumentException(
                     "The generic type <V extends MvpView> must be the first generic type argument of class "
@@ -74,36 +73,32 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
     @UiThread
     @Override
     public void attachView(@NonNull V view) {
-        this.view = new WeakReference<>(view);
-        viewAttachedAtLeastOnce = true;
+        this.mView = new WeakReference<>(view);
+    }
+
+    @UiThread
+    @Override
+    public void detachView() {
+        if (mView != null) {
+            mView.clear();
+            mView = null;
+        }
+    }
+
+    @UiThread
+    @Override
+    public void destroy() {
     }
 
     @UiThread
     @NonNull
-    protected V getView() {
-        if (!viewAttachedAtLeastOnce) {
-            throw new IllegalStateException("No view has ever been attached to this presenter!");
-        }
-        if (view != null) {
-            V realView = view.get();
+    protected V getV() {
+        if (mView != null) {
+            final V realView = mView.get();
             if (realView != null) {
                 return realView;
             }
         }
-        return nullView;
-    }
-
-    @Override
-    @UiThread
-    public void detachView() {
-        if (view != null) {
-            view.clear();
-            view = null;
-        }
-    }
-
-    @Override
-    @UiThread
-    public void destroy() {
+        return mNullView;
     }
 }
