@@ -14,7 +14,6 @@ import com.xia.mvp.MvpView;
 public abstract class BaseMvpActivity<P extends MvpPresenter> extends AppCompatActivity implements MvpView<P> {
     private P mPresenter;
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,19 +30,16 @@ public abstract class BaseMvpActivity<P extends MvpPresenter> extends AppCompatA
         }
     }
 
-    @SuppressWarnings("unchecked")
     protected P getP() {
         return mPresenter == null ? newP() : mPresenter;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
             mPresenter.destroy();
             mPresenter.detachView();
-            mPresenter = null;
         }
     }
 }
